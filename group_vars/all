@@ -1,0 +1,15 @@
+# vim: ft=yaml
+hostname: phy-nix-arch-testy
+partition_efi: /dev/sda1
+partition_crypt: /dev/sda3
+
+size_root: 32G
+size_swap: 8G
+
+extra_packages:
+  - git
+  - ansible
+  - tmux
+  - vim
+  - wpa_supplicant
+  - dialog

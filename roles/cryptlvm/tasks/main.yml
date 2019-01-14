@@ -1,0 +1,11 @@
+---
+- name: check that LUKS is set up
+  command: cryptsetup isLuks {{partition_crypt}}
+  register: isluks
+- name: set up LUKS
+  when: isluks.rc != 0
+  command: cryptsetup luksFormat --type luks2 {{partition_crypt}} -
+  args:
+    stdin: "{{cryptlvm_password}}"
+- name: open LUKS
+  command: cryptsetup open {{partition_crypt}} cryptlvm

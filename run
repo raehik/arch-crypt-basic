@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+echo "currently disabled"
+exit 1
+
+ansible-playbook -i localhost install.yml
+arch-chroot /mnt /bin/bash ansible-playbook -i localhost chroot.yml

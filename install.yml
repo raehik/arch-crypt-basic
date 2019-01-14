@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - { role: partition, tags: ['partition'] }
+    - { role: lvm, tags: ['lvm'] }
+    - { role: cryptlvm, tags: ['cryptlvm'] }
+    - { role: kernel, tags: ['kernel'] }
+    - { role: bootloader, tags: ['bootloader'] }
+    - { role: close, tags: ['bootloader'] }
+  vars_prompt:
+    - name: cryptlvm_password
+      prompt: "Enter desired cryptlvm password"
+    - name: root_password
+      prompt: "Enter desired root user password"

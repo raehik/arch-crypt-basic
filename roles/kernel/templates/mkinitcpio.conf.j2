@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+# General configuration for all computers, using:
+#   * all keyboards (keyboard.. .autodetect)
+#   * LUKS on LVM (encrypt... lvm2)
+#   * resume for LVM (lvm2... resume)
+HOOKS=(base udev keyboard autodetect filesystems fsck block modconf keymap encrypt lvm2 resume)

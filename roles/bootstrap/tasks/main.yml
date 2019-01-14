@@ -1,0 +1,5 @@
+---
+- name: pacstrap
+  command: pacstrap {{mount_dir}} base {{extra_packages}}
+- name: generate fstab
+  shell: genfstab -U -p {{mount_dir}} >> {{mount_dir}}/etc/fstab

@@ -1,0 +1,5 @@
+---
+- name: Install systemd-boot bootloader
+  command: bootctl --path=/boot install
+
+- name: Install systemd config TODO

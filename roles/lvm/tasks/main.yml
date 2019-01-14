@@ -1,0 +1,39 @@
+---
+- name: Create LVM volume group (and set up physical volume)
+  lvg:
+    vg: "{{hostname}}"
+    pvs: /dev/mapper/cryptlvm
+    state: present
+
+- name: Create LVM logical volume for /
+  lvol:
+    vg: "{{hostname}}"
+    lv: root
+    size: "{{size_root}}"
+    state: present
+- name: Create LVM logical volume for swap
+  lvol:
+    vg: "{{hostname}}"
+    lv: swap
+    size: "{{size_swap}}"
+    state: present
+- name: Create LVM logical volume for /home (all remaining space)
+  lvol:
+    vg: "{{hostname}}"
+    lv: root
+    size: 100%FREE
+    state: present
+
+- name: Create filesystem on /
+  filesystem:
+    dev: /dev/{{hostname}}/root
+    fstype: ext4
+
+- name: Create swap filesystem
+  command: mkswap /dev/{{hostname}}/swap
+
+- name: Create filesystem on /home
+  filesystem:
+    dev: /dev/{{hostname}}/home
+    fstype: ext4
+    opts: -m 0

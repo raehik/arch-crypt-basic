@@ -1,0 +1,3 @@
+---
+- name: regenerate initrd
+  command: mkinitcpio -p

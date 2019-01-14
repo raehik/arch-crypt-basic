@@ -1,0 +1,8 @@
+---
+- name: close LUKS
+  command: cryptsetup close cryptlvm
+  tags:
+    - cryptlvm
+- name: unmount /boot
+- name: unmount /home
+- name: unmount /
